@@ -7,7 +7,8 @@ public static class StringCalculator
 		if (string.IsNullOrWhiteSpace(numbers))
 			return 0;
 
-		var addends = numbers.Split([',', '\n'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+		var addends = numbers.Split([',', '\n'],
+			StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 
 		if (addends.Length == 1)
 			return int.Parse(addends[0]);
@@ -19,5 +20,16 @@ public static class StringCalculator
 		}
 
 		return sum;
+	}
+
+	public static char GetSeparator(string toParse)
+	{
+		if (toParse.StartsWith("//") && toParse.EndsWith('\n'))
+		{
+			return toParse.Split(["//", "\n"],
+				StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)[0][0];
+		}
+
+		return '\0';
 	}
 }

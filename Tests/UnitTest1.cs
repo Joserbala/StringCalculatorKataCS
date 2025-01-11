@@ -39,4 +39,10 @@ public class StringCalculatorTests
 	{
 		StringCalculator.Add("1,\n2,5").Should().Be(8);
 	}
+
+	[Test]
+	public void Semicolon_is_a_separator()
+	{
+		StringCalculator.GetSeparator("//;\n").Should().Be(';');
+	}
 }
