@@ -1,15 +1,20 @@
-﻿namespace Tests;
+﻿using FluentAssertions;
+
+namespace Tests;
 
 public class Tests
 {
-    [SetUp]
-    public void Setup()
-    {
-    }
+	[Test]
+	public void CalculatorReturnsZeroWhenEmptyParameters()
+	{
+		StringCalculator.Add("").Should().Be(0);
+	}
+}
 
-    [Test]
-    public void Test1()
-    {
-        Assert.Pass();
-    }
+public class StringCalculator
+{
+	public static int Add(string numbers)
+	{
+		return 0;
+	}
 }
