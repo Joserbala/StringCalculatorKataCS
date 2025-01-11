@@ -23,7 +23,7 @@ public class Tests
 	}
 }
 
-public class StringCalculator
+public static class StringCalculator
 {
 	public static int Add(string numbers)
 	{
