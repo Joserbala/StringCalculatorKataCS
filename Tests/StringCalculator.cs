@@ -11,7 +11,7 @@ public static class StringCalculator
 	{
 		var separators = ComputeSeparators(numbers);
 
-		if (separators.Count > DefaultSeparators.Count)
+		if (AreThereCustomSeparators(separators))
 			numbers = numbers[(numbers.IndexOf('\n') + 1)..];
 
 		var addends = numbers.Split(separators.ToArray(), TrimEntriesAndRemoveEmptyOnes).Select(int.Parse).ToList();
@@ -20,6 +20,9 @@ public static class StringCalculator
 
 		return addends.Where(addend => addend <= 1000).Sum();
 	}
+
+	private static bool AreThereCustomSeparators(List<string> separators)
+		=> separators.Count > DefaultSeparators.Count;
 
 	private static void EnsureNoNegatives(List<int> addends)
 	{
