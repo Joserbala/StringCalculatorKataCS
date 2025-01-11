@@ -16,9 +16,7 @@ public static class StringCalculator
 			numbers = numbers[(numbers.IndexOf('\n') + 1)..];
 		}
 
-		var stringAddends = numbers.Split(separators.ToArray(), TrimEntriesAndRemoveEmptyOnes);
-
-		var addends = stringAddends.Select(int.Parse).ToList();
+		var addends = numbers.Split(separators.ToArray(), TrimEntriesAndRemoveEmptyOnes).Select(int.Parse).ToList();
 
 		if (addends.Exists(a => a < 0))
 		{
