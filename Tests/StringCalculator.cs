@@ -18,14 +18,26 @@ public static class StringCalculator
 			numbers = numbers[(numbers.IndexOf('\n') + 1)..];
 		}
 
-		var addends = numbers.Split(separators.ToArray(),
+		var stringAddends = numbers.Split(separators.ToArray(),
 			StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 
-		if (addends.Length == 1)
-			return int.Parse(addends[0]);
+		var addends = new List<int>();
+		foreach (var addend in stringAddends)
+		{
+			addends.Add(int.Parse(addend));
+		}
+
+		if (addends.Exists(a => a < 0))
+		{
+			var invalidAddends = addends.Where(a => a < 0).ToList();
+			throw new ArgumentException($"Negatives not allowed: {string.Join(' ', invalidAddends)}");
+		}
+
+		if (stringAddends.Length == 1)
+			return int.Parse(stringAddends[0]);
 
 		var sum = 0;
-		foreach (var addend in addends)
+		foreach (var addend in stringAddends)
 		{
 			sum += int.Parse(addend);
 		}

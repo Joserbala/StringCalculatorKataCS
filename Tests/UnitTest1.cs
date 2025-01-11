@@ -58,4 +58,10 @@ public class StringCalculatorTests
 		StringCalculator.Add("//;\n1;2,9").Should().Be(12);
 		StringCalculator.Add("//;\n1;2,9\n45").Should().Be(57);
 	}
+
+	[Test]
+	public void Disallow_negatives()
+	{
+		((Func<int>?)(() => StringCalculator.Add("1,-2,-3"))).Should().Throw<ArgumentException>();
+	}
 }
