@@ -33,4 +33,10 @@ public class StringCalculatorTests
 	{
 		StringCalculator.Add("0\n2").Should().Be(2);
 	}
+
+	[Test]
+	public void Combining_comma_and_newline_separators()
+	{
+		StringCalculator.Add("1,\n2,5").Should().Be(8);
+	}
 }
