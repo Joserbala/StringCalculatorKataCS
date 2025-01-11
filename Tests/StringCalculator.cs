@@ -4,13 +4,13 @@ public static class StringCalculator
 {
 	public static int Add(string numbers)
 	{
-		var customSeparator = '\0';
+		var customSeparator = string.Empty;
 		if (numbers.Contains('\n'))
 			customSeparator = GetSeparator(numbers[..(numbers.IndexOf('\n') + 1)]);
 
-		var separators = new List<char> { ',', '\n', customSeparator };
+		var separators = new List<string> { ",", "\n", customSeparator };
 
-		if (customSeparator != '\0')
+		if (!string.IsNullOrWhiteSpace(customSeparator))
 		{
 			numbers = numbers[(numbers.IndexOf('\n') + 1)..];
 		}
@@ -40,14 +40,20 @@ public static class StringCalculator
 		return sum;
 	}
 
-	public static char GetSeparator(string toParse)
+	public static string GetSeparator(string toParse)
 	{
-		if (toParse.StartsWith("//") && toParse.EndsWith('\n'))
+		if (!toParse.StartsWith("//") || !toParse.EndsWith('\n'))
+			return string.Empty;
+
+		var separator = toParse.Split(["//", "\n"],
+			StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)[0];
+
+		if (separator.StartsWith('[') && separator.EndsWith(']'))
 		{
-			return toParse.Split(["//", "\n"],
-				StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)[0][0];
+			return separator.Split(['[', ']'],
+				StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)[0];
 		}
 
-		return '\0';
+		return separator;
 	}
 }

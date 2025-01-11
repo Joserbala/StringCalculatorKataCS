@@ -43,7 +43,13 @@ public class StringCalculatorTests
 	[Test]
 	public void Semicolon_is_a_separator()
 	{
-		StringCalculator.GetSeparator("//;\n").Should().Be(';');
+		StringCalculator.GetSeparator("//;\n").Should().Be(";");
+	}
+
+	[Test]
+	public void Arbitrary_length_separator()
+	{
+		StringCalculator.GetSeparator("//[***]\n").Should().Be("***");
 	}
 
 	[Test]
