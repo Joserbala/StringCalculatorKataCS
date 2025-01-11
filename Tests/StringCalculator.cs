@@ -34,9 +34,9 @@ public static class StringCalculator
 		}
 
 		var sum = 0;
-		foreach (var addend in stringAddends)
+		foreach (var addend in addends)
 		{
-			sum += int.Parse(addend);
+			sum += addend;
 		}
 
 		return sum;
