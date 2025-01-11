@@ -9,14 +9,9 @@ public static class StringCalculator
 
 	public static int Add(string numbers)
 	{
-		var customSeparators = new List<string>();
-		if (numbers.Contains('\n'))
-			customSeparators = [..GetCustomSeparators(numbers[..(numbers.IndexOf('\n') + 1)])];
+		var separators = ComputeSeparators(numbers);
 
-		var separators = DefaultSeparators;
-		separators.AddRange(customSeparators);
-
-		if (customSeparators.Count != 0)
+		if (separators.Count != DefaultSeparators.Count)
 		{
 			numbers = numbers[(numbers.IndexOf('\n') + 1)..];
 		}
@@ -32,6 +27,18 @@ public static class StringCalculator
 		}
 
 		return addends.Where(addend => addend <= 1000).Sum();
+	}
+
+	private static List<string> ComputeSeparators(string numbers)
+	{
+		var customSeparators = new List<string>();
+		if (numbers.Contains('\n'))
+			customSeparators = [..GetCustomSeparators(numbers[..(numbers.IndexOf('\n') + 1)])];
+
+		var separators = new List<string>(DefaultSeparators);
+		separators.AddRange(customSeparators);
+
+		return separators;
 	}
 
 	private static string[] GetCustomSeparators(string toParse)
