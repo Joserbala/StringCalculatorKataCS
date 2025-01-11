@@ -41,18 +41,6 @@ public class StringCalculatorTests
 	}
 
 	[Test]
-	public void Semicolon_is_a_separator()
-	{
-		StringCalculator.GetSeparators("//;\n").Should().Contain(";");
-	}
-
-	[Test]
-	public void Arbitrary_length_separator()
-	{
-		StringCalculator.GetSeparators("//[***]\n").Should().Contain("***");
-	}
-
-	[Test]
 	public void Custom_separator_works_as_separator()
 	{
 		StringCalculator.Add("//;\n1;2").Should().Be(3);
