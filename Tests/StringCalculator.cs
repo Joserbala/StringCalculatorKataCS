@@ -33,9 +33,6 @@ public static class StringCalculator
 			throw new ArgumentException($"Negatives not allowed: {string.Join(' ', invalidAddends)}");
 		}
 
-		if (stringAddends.Length == 1)
-			return int.Parse(stringAddends[0]);
-
 		var sum = 0;
 		foreach (var addend in stringAddends)
 		{
