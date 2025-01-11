@@ -4,6 +4,9 @@ public static class StringCalculator
 {
 	private static readonly List<string> DefaultSeparators = [",", "\n"];
 
+	private const StringSplitOptions TrimEntriesAndRemoveEmptyOnes =
+		StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries;
+
 	public static int Add(string numbers)
 	{
 		var customSeparators = new List<string>();
@@ -18,8 +21,7 @@ public static class StringCalculator
 			numbers = numbers[(numbers.IndexOf('\n') + 1)..];
 		}
 
-		var stringAddends = numbers.Split(separators.ToArray(),
-			StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+		var stringAddends = numbers.Split(separators.ToArray(), TrimEntriesAndRemoveEmptyOnes);
 
 		var addends = stringAddends.Select(int.Parse).ToList();
 
@@ -37,13 +39,11 @@ public static class StringCalculator
 		if (!(toParse.StartsWith("//") && toParse.EndsWith('\n')))
 			return [];
 
-		var separator = toParse.Split(["//", "\n"],
-			StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)[0];
+		var separator = toParse.Split(["//", "\n"], TrimEntriesAndRemoveEmptyOnes)[0];
 
 		if (separator.StartsWith('[') && separator.EndsWith(']'))
 		{
-			return separator.Split(['[', ']'],
-				StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+			return separator.Split(['[', ']'], TrimEntriesAndRemoveEmptyOnes);
 		}
 
 		return [separator];
