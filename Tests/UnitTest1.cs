@@ -9,12 +9,21 @@ public class Tests
 	{
 		StringCalculator.Add("").Should().Be(0);
 	}
+
+	[Test]
+	public void ReturnsTheSameNumberWhenProvidingOneNumber()
+	{
+		StringCalculator.Add("1").Should().Be(1);
+	}
 }
 
 public class StringCalculator
 {
 	public static int Add(string numbers)
 	{
-		return 0;
+		if (string.IsNullOrWhiteSpace(numbers))
+			return 0;
+
+		return int.Parse(numbers);
 	}
 }
