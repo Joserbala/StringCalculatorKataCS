@@ -50,9 +50,7 @@ public static class StringCalculator
 		var separator = toParse.Split(["//", "\n"], TrimEntriesAndRemoveEmptyOnes)[0];
 
 		if (separator.StartsWith('[') && separator.EndsWith(']'))
-		{
 			return separator.Split(['[', ']'], TrimEntriesAndRemoveEmptyOnes);
-		}
 
 		return [separator];
 	}
