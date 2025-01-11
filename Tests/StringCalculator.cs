@@ -4,9 +4,6 @@ public static class StringCalculator
 {
 	public static int Add(string numbers)
 	{
-		if (string.IsNullOrWhiteSpace(numbers))
-			return 0;
-
 		var customSeparator = '\0';
 		if (numbers.Contains('\n'))
 			customSeparator = GetSeparator(numbers[..(numbers.IndexOf('\n') + 1)]);
