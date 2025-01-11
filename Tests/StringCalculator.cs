@@ -23,11 +23,11 @@ public static class StringCalculator
 
 	private static void EnsureNoNegatives(List<int> addends)
 	{
-		if (addends.Exists(a => a < 0))
-		{
-			var invalidAddends = addends.Where(a => a < 0).ToList();
-			throw new ArgumentException($"Negatives not allowed: {string.Join(' ', invalidAddends)}");
-		}
+		if (!addends.Exists(a => a < 0))
+			return;
+
+		var invalidAddends = addends.Where(a => a < 0).ToList();
+		throw new ArgumentException($"Negatives not allowed: {string.Join(' ', invalidAddends)}");
 	}
 
 	private static List<string> ComputeSeparators(string numbers)
