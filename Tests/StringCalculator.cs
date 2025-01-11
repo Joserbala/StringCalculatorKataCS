@@ -41,7 +41,7 @@ public static class StringCalculator
 		return sum;
 	}
 
-	private static IEnumerable<string> GetSeparators(string toParse)
+	private static string[] GetSeparators(string toParse)
 	{
 		if (!toParse.StartsWith("//") || !toParse.EndsWith('\n'))
 			return [];
