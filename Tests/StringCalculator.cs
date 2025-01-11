@@ -34,7 +34,7 @@ public static class StringCalculator
 	{
 		var customSeparators = new List<string>();
 		if (numbers.Contains('\n'))
-			customSeparators = [..GetCustomSeparators(numbers[..(numbers.IndexOf('\n') + 1)])];
+			customSeparators = [..GetCustomSeparatorsFrom(numbers[..(numbers.IndexOf('\n') + 1)])];
 
 		var separators = new List<string>(DefaultSeparators);
 		separators.AddRange(customSeparators);
@@ -42,7 +42,7 @@ public static class StringCalculator
 		return separators;
 	}
 
-	private static string[] GetCustomSeparators(string toParse)
+	private static string[] GetCustomSeparatorsFrom(string toParse)
 	{
 		if (!(toParse.StartsWith("//") && toParse.EndsWith('\n')))
 			return [];
