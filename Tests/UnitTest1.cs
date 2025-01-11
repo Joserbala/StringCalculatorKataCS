@@ -77,4 +77,11 @@ public class StringCalculatorTests
 		StringCalculator.Add("1001, 2").Should().Be(2);
 		StringCalculator.Add("1000, 2").Should().Be(1002);
 	}
+
+	[Test]
+	public void Add_with_arbitrary_length_separator()
+	{
+		StringCalculator.Add("//[***]\n1***2***3").Should().Be(6);
+		StringCalculator.Add("//[foo]\n1foo2foo3").Should().Be(6);
+	}
 }
