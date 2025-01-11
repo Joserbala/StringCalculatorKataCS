@@ -7,7 +7,18 @@ public static class StringCalculator
 		if (string.IsNullOrWhiteSpace(numbers))
 			return 0;
 
-		var addends = numbers.Split([',', '\n'],
+		var customSeparator = '\0';
+		if (numbers.Contains('\n'))
+			customSeparator = GetSeparator(numbers[..(numbers.IndexOf('\n') + 1)]);
+
+		var separators = new List<char> { ',', '\n', customSeparator };
+
+		if (customSeparator != '\0')
+		{
+			numbers = numbers[(numbers.IndexOf('\n') + 1)..];
+		}
+
+		var addends = numbers.Split(separators.ToArray(),
 			StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 
 		if (addends.Length == 1)

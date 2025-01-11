@@ -45,4 +45,10 @@ public class StringCalculatorTests
 	{
 		StringCalculator.GetSeparator("//;\n").Should().Be(';');
 	}
+
+	[Test]
+	public void Custom_separator_works_as_separator()
+	{
+		StringCalculator.Add("//;\n1;2").Should().Be(3);
+	}
 }
