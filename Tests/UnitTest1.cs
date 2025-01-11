@@ -64,4 +64,11 @@ public class StringCalculatorTests
 	{
 		((Func<int>?)(() => StringCalculator.Add("1,-2,-3"))).Should().Throw<ArgumentException>();
 	}
+
+	[Test]
+	public void Ignore_numbers_bigger_than_1000()
+	{
+		StringCalculator.Add("1001, 2").Should().Be(2);
+		StringCalculator.Add("1000, 2").Should().Be(1002);
+	}
 }

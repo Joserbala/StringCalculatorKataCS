@@ -36,7 +36,8 @@ public static class StringCalculator
 		var sum = 0;
 		foreach (var addend in addends)
 		{
-			sum += addend;
+			if (addend <= 1000)
+				sum += addend;
 		}
 
 		return sum;
