@@ -90,4 +90,10 @@ public class StringCalculatorTests
 	{
 		StringCalculator.Add("//[*][%]\n1*2%3").Should().Be(6);
 	}
+
+	[Test]
+	public void Multiple_longer_length_methods()
+	{
+		StringCalculator.Add("//[foo][bar]\n1foo2bar3").Should().Be(6);
+	}
 }
