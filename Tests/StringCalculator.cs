@@ -2,13 +2,15 @@ namespace Tests;
 
 public static class StringCalculator
 {
+	private static readonly List<string> DefaultSeparators = [",", "\n"];
+
 	public static int Add(string numbers)
 	{
 		var customSeparators = new List<string>();
 		if (numbers.Contains('\n'))
 			customSeparators = [..GetSeparators(numbers[..(numbers.IndexOf('\n') + 1)])];
 
-		var separators = new List<string> { ",", "\n" };
+		var separators = DefaultSeparators;
 		separators.AddRange(customSeparators);
 
 		if (customSeparators.Count != 0)
