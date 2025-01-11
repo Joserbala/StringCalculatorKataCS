@@ -27,4 +27,10 @@ public class StringCalculatorTests
 	{
 		StringCalculator.Add("1,2,3,4,5,6,7,8,9").Should().Be(45);
 	}
+
+	[Test]
+	public void Newline_separator_works_as_separator()
+	{
+		StringCalculator.Add("0\n2").Should().Be(2);
+	}
 }

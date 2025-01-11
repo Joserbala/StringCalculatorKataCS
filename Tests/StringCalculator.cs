@@ -7,7 +7,7 @@ public static class StringCalculator
 		if (string.IsNullOrWhiteSpace(numbers))
 			return 0;
 
-		var addends = numbers.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+		var addends = numbers.Split([',', '\n'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 
 		if (addends.Length == 1)
 			return int.Parse(addends[0]);
