@@ -21,4 +21,10 @@ public class Tests
 	{
 		StringCalculator.Add("2,1").Should().Be(3);
 	}
+
+	[Test]
+	public void AddingNineNumbersReturnsTheSumOfNineNumbers()
+	{
+		StringCalculator.Add("1,2,3,4,5,6,7,8,9").Should().Be(45);
+	}
 }
