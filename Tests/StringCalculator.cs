@@ -12,19 +12,22 @@ public static class StringCalculator
 		var separators = ComputeSeparators(numbers);
 
 		if (separators.Count != DefaultSeparators.Count)
-		{
 			numbers = numbers[(numbers.IndexOf('\n') + 1)..];
-		}
 
 		var addends = numbers.Split(separators.ToArray(), TrimEntriesAndRemoveEmptyOnes).Select(int.Parse).ToList();
 
+		EnsureNoNegatives(addends);
+
+		return addends.Where(addend => addend <= 1000).Sum();
+	}
+
+	private static void EnsureNoNegatives(List<int> addends)
+	{
 		if (addends.Exists(a => a < 0))
 		{
 			var invalidAddends = addends.Where(a => a < 0).ToList();
 			throw new ArgumentException($"Negatives not allowed: {string.Join(' ', invalidAddends)}");
 		}
-
-		return addends.Where(addend => addend <= 1000).Sum();
 	}
 
 	private static List<string> ComputeSeparators(string numbers)
