@@ -11,7 +11,7 @@ public static class StringCalculator
 	{
 		var separators = ComputeSeparators(numbers);
 
-		if (separators.Count != DefaultSeparators.Count)
+		if (separators.Count > DefaultSeparators.Count)
 			numbers = numbers[(numbers.IndexOf('\n') + 1)..];
 
 		var addends = numbers.Split(separators.ToArray(), TrimEntriesAndRemoveEmptyOnes).Select(int.Parse).ToList();
