@@ -4,13 +4,14 @@ public static class StringCalculator
 {
 	public static int Add(string numbers)
 	{
-		var customSeparator = string.Empty;
+		var customSeparators = new List<string>();
 		if (numbers.Contains('\n'))
-			customSeparator = GetSeparator(numbers[..(numbers.IndexOf('\n') + 1)]);
+			customSeparators = [..GetSeparators(numbers[..(numbers.IndexOf('\n') + 1)])];
 
-		var separators = new List<string> { ",", "\n", customSeparator };
+		var separators = new List<string> { ",", "\n" };
+		separators.AddRange(customSeparators);
 
-		if (!string.IsNullOrWhiteSpace(customSeparator))
+		if (customSeparators.Count != 0)
 		{
 			numbers = numbers[(numbers.IndexOf('\n') + 1)..];
 		}
@@ -40,10 +41,10 @@ public static class StringCalculator
 		return sum;
 	}
 
-	public static string GetSeparator(string toParse)
+	public static IEnumerable<string> GetSeparators(string toParse)
 	{
 		if (!toParse.StartsWith("//") || !toParse.EndsWith('\n'))
-			return string.Empty;
+			return [];
 
 		var separator = toParse.Split(["//", "\n"],
 			StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)[0];
@@ -51,9 +52,9 @@ public static class StringCalculator
 		if (separator.StartsWith('[') && separator.EndsWith(']'))
 		{
 			return separator.Split(['[', ']'],
-				StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)[0];
+				StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 		}
 
-		return separator;
+		return [separator];
 	}
 }
