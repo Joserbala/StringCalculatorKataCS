@@ -51,4 +51,11 @@ public class StringCalculatorTests
 	{
 		StringCalculator.Add("//;\n1;2").Should().Be(3);
 	}
+
+	[Test]
+	public void Custom_separator_and_default_separators()
+	{
+		StringCalculator.Add("//;\n1;2,9").Should().Be(12);
+		StringCalculator.Add("//;\n1;2,9\n45").Should().Be(57);
+	}
 }
