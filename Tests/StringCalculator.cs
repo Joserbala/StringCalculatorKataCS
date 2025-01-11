@@ -19,11 +19,7 @@ public static class StringCalculator
 		var stringAddends = numbers.Split(separators.ToArray(),
 			StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 
-		var addends = new List<int>();
-		foreach (var addend in stringAddends)
-		{
-			addends.Add(int.Parse(addend));
-		}
+		var addends = stringAddends.Select(int.Parse).ToList();
 
 		if (addends.Exists(a => a < 0))
 		{
@@ -31,14 +27,7 @@ public static class StringCalculator
 			throw new ArgumentException($"Negatives not allowed: {string.Join(' ', invalidAddends)}");
 		}
 
-		var sum = 0;
-		foreach (var addend in addends)
-		{
-			if (addend <= 1000)
-				sum += addend;
-		}
-
-		return sum;
+		return addends.Where(addend => addend <= 1000).Sum();
 	}
 
 	private static string[] GetSeparators(string toParse)
